@@ -4,11 +4,17 @@ on:
     inputs:
       branch:
         type: string
+      destination_branch:
+        type: string
+      source_branch:
+        type: string
     
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Output Branch
+        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -26,5 +32,5 @@ jobs:
           retention-days: 30
       - name: Output artifact URL
         run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
-      - name: Output artifact URL
-        run:  echo 'Branch is ${{ inputs.branch }}'
+      - name: Output Branch
+        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}'
