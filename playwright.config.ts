@@ -39,7 +39,7 @@ export default defineConfig({
       name: 'production',
       use: {
         ...devices['Desktop Chrome'],
-        screenshot: 'on',
+        screenshot: 'only-on-failure',
       },
       testMatch: 'production/*',
       timeout: 15000,

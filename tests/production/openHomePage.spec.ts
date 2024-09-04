@@ -11,20 +11,21 @@ else
 
 
 sites.forEach((site) => {
-  let url;
+  let url, url_en;
   if (process.env.INPUT_BRANCH === 'main' || process.env.INPUT_BRANCH === undefined) {
     url = site.url
+    url_en = site.url + 'en/'
   }
   else if (process.env.INPUT_BRANCH === 'dev') {
     url = `https://market-dev.bridgify.io/?property=${site.property}`
+    url_en = `https://market-dev.bridgify.io/en/?property=${site.property}`
   }
   else {
     url = `https://${process.env.INPUT_BRANCH}.${process.env.INPUT_APP_ID}.amplifyapp.com/?property=${site.property}`
+    url_en = `https://${process.env.INPUT_BRANCH}.${process.env.INPUT_APP_ID}.amplifyapp.com/en/?property=${site.property}`
   }
 
   test(`has title, logo and headers he: ${url}`, async ({ page }) => {
-    console.log(process.env.DATA_TEST);
-
     await page.goto(url);
     expect(page).toHaveTitle(site.title);
     await expect(page.locator('img#navbar-logo')).toBeVisible();
@@ -33,7 +34,7 @@ sites.forEach((site) => {
   });
 
   test(`has title, logo and headers en: ${url}`, async ({ page }) => {
-    await page.goto(`${url}en/`);
+    await page.goto(`${url_en}`);
     expect(page).toHaveTitle(site.title_en);
     await expect(page.locator('img#navbar-logo')).toBeVisible();
     await expect(page.locator('h1').getByText(site.heading_en)).toBeVisible();

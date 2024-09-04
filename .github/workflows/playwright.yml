@@ -21,7 +21,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run:  INPUT_BRANCH=${{ inputs.branch }} INPUT_APP_ID=${{inputs.app_id}} npm run test:prod
-      - uses: actions/upload-artifact@v4
+      - name: Upload playwright-report
+        uses: actions/upload-artifact@v4
         id: artifact-upload
         if: always()
         with:
