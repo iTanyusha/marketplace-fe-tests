@@ -1,6 +1,9 @@
 name: Playwright Tests
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        type: string
     
 jobs:
   test:
@@ -9,7 +12,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
@@ -23,3 +26,5 @@ jobs:
           retention-days: 30
       - name: Output artifact URL
         run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
+      - name: Output artifact URL
+        run:  echo 'Branch is ${{ inputs.branch }}'

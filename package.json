@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "npx playwright test --project=chromium"
+    "test:prod": "npx playwright test --project=production",
+    "test:dev": "npx playwright test --project=development"
   },
   "keywords": [],
   "author": "",
@@ -11,6 +12,7 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.46.1",
-    "@types/node": "^22.5.2"
+    "@types/node": "^22.5.2",
+    "cross-env": "^7.0.3"
   }
 }

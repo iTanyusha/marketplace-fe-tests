@@ -36,9 +36,22 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'production',
+      use: {
+        ...devices['Desktop Chrome'],
+        screenshot: 'only-on-failure',
+      },
+      testMatch: 'production/*',
+      timeout: 15000,
+      expect: {
+        timeout: 15000
+      }
+    },
+    {
+      name: 'development',
       use: { ...devices['Desktop Chrome'] },
-      timeout: 10000
+      testMatch: 'development/*',
+      timeout: 15000
     },
 
     // {
