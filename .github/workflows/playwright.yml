@@ -20,6 +20,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
+        id: tests
         run:  INPUT_BRANCH=${{ inputs.branch }} INPUT_APP_ID=${{inputs.app_id}} npm run test:prod
       - name: Upload playwright-report
         uses: actions/upload-artifact@v4
@@ -30,4 +31,4 @@ jobs:
           path: playwright-report/
           retention-days: 30
       - name: Output artifact URL
-        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
+        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}, ${{steps.tests.outputs}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
