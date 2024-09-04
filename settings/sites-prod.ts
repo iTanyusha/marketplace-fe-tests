@@ -1,6 +1,7 @@
 export const sites = [
     {
         url: 'https://amexiting.co.il/',
+        property: 'Amex',
         title: 'דף הבית - אתר ההטבות לאטרקציות בחו"ל ללקוחות אמריקן אקספרס',
         heading: "מאות אלפי אטרקציות וחוויות בכל העולם בהנחות מיוחדות, רק ללקוחות אמריקן אקספרס",
         carousel_heading: 'אטרקציות שאסור לפספס',
@@ -10,6 +11,7 @@ export const sites = [
     },
     {
         url: 'https://www.b321.co.il/',
+        property: 'Bali',
         title: 'באלי - כרטיסים לאטרקציות בכל העולם בקליק אחד | B321',
         heading: 'מעל מיליון אטרקציות, הופעות וסיורים בעולם עכשיו עם 5% הנחה!',
         carousel_heading: 'אטרקציות שאסור לפספס',
@@ -19,6 +21,7 @@ export const sites = [
     },
     {
         url: 'https://www.max-adventure.co.il/',
+        property: 'Max',
         title: 'Max | אתר החוויות והאטרקציות של Max',
         heading: 'כל מה שיש לעולם להציע במקום אחד, במחירים משתלמים וכ-10% קאשבק',
         carousel_heading: 'האטרקציות הכי מבוקשות',
@@ -28,6 +31,7 @@ export const sites = [
     },
     {
         url: 'https://isracard-fun.co.il/',
+        property: 'Isracard',
         title: 'דף הבית - אתר ההטבות לאטרקציות בחו"ל ללקוחות ישראכרט',
         heading: 'עשרות אלפי אטרקציות וחוויות בכל העולם בהנחות מיוחדות, רק ללקוחות ישראכרט',
         carousel_heading: 'אטרקציות שאסור לפספס',
@@ -37,6 +41,7 @@ export const sites = [
     },
     {
         url: 'https://pango-global-fun.pango.co.il/',
+        property: 'Pango',
         title: 'פנגו גלובל פאן | מגוון הטבות לחוויות בחו"ל',
         heading: 'מטיילים בחו״ל',
         carousel_heading: 'האטרקציות הכי מבוקשות',
