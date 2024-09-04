@@ -4,10 +4,6 @@ on:
     inputs:
       branch:
         type: string
-      destination_branch:
-        type: string
-      source_branch:
-        type: string
       app_id:
         type: string
     
@@ -16,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output Branch
-        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}, ${{inputs.app_id}}'
+        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.app_id}}'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -24,7 +20,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npm run test:prod
+        run:  DATA_TEST=testdata npm run test:prod
       - uses: actions/upload-artifact@v4
         id: artifact-upload
         if: always()
@@ -34,5 +30,3 @@ jobs:
           retention-days: 30
       - name: Output artifact URL
         run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
-      - name: Output Branch
-        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}, ${{inputs.app_id}}'
