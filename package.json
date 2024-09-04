@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:prod": "npx playwright test --project=production",
-    "test:dev": "npx playwright test --project=development"
+    "test:prod": "npx playwright test --project=production"
   },
   "keywords": [],
   "author": "",
