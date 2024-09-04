@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output Branch
-        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}'
+        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}', ${{inputs.app_id}}'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -35,4 +35,4 @@ jobs:
       - name: Output artifact URL
         run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
       - name: Output Branch
-        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}'
+        run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.source_branch}}, ${{inputs.destination_branch}}', ${{inputs.app_id}}'
