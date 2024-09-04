@@ -8,6 +8,8 @@ on:
         type: string
       source_branch:
         type: string
+      app_id:
+        type: string
     
 jobs:
   test:
