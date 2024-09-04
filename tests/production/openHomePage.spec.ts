@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { sites } from '../../settings/sites-prod';
 
+if (process.env.INPUT_BRANCH === 'main')
+  console.log('run tests on main');
+else if (process.env.INPUT_BRANCH === 'dev')
+  console.log('run tests on dev', 'https://market-dev.bridgify.io/');
+else
+  console.log('run tests on', `https//:${process.env.INPUT_BRANCH}.${process.env.INPUT_APP_ID}.amplifyapp.com/`);
+
+
 
 sites.forEach((site) => {
   test(`has title, logo and headers he: ${site.url}`, async ({ page }) => {

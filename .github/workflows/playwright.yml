@@ -20,7 +20,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run:  DATA_TEST=testdata npm run test:prod
+        run:  INPUT_BRANCH=${{ inputs.branch }} INPUT_APP_ID=${{inputs.app_id}} npm run test:prod
       - uses: actions/upload-artifact@v4
         id: artifact-upload
         if: always()
