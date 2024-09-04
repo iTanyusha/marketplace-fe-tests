@@ -31,4 +31,4 @@ jobs:
           path: playwright-report/
           retention-days: 30
       - name: Output artifact URL
-        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}, ${{steps.tests.outputs}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
+        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}, ${{join(steps.tests.outputs.*, '\n')}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
