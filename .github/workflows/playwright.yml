@@ -51,21 +51,24 @@ jobs:
         run: |
           curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} -H 'Content-type:application/json' --data '{"attachments": [
             {
-              "color": "success",
+              "color": ${{ job.status == 'success' && 'green' || 'red' }},
               "blocks": [
                 {
-                  "type": "section",
+                  "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": ":meow_code: Tests for ${{ inputs.branch }}",
+                    "text": ":smile: Tests for ${{ inputs.branch }}",
                     "emoji": true
                   }
+                },
+                {
+                  "type": "divider"
                 },
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ":meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: <${{ steps.artifact-upload.outputs.artifact-url }}|download report>"
+                    "text": ":smile: Tests for *${{ inputs.branch }}* \n Result: *${{steps.tests.outcome}}* \n Report: <${{ steps.artifact-upload.outputs.artifact-url }}|download>"
                   }
                 }
               ]
