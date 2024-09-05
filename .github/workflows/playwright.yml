@@ -34,3 +34,13 @@ jobs:
         run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
       - name: Output statuses
         run:  echo 'Result statuses ${{ steps.artifact-upload.outputs.artifact-url }}, ${{join(steps.tests.outputs.*, '\n')}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
+      - name: Send Slack Notification
+        uses: ravsamhq/notify-slack-action@2.5.0
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} has {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
