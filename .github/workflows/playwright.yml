@@ -40,7 +40,10 @@ jobs:
           SLACK_CHANNEL: frontend_tests
           SLACK_COLOR: ${{ job.status }} 
           SLACK_ICON: https://cdn.prod.website-files.com/60e597955866d334d69541ba/612784b9d4709081f0932c34_icon%20256x256.png
+          SLACK_MESSAGE_ON_SUCCESS: ':meow_party: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
+          SLACK_MESSAGE_ON_FAILURE: ':meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
           SLACK_MESSAGE: 'Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
           SLACK_TITLE: Tests Finished with ${{ job.status }}
-          SLACK_USERNAME: Frontend Tests
+          SLACK_USERNAME: FrontendTests
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          ENABLE_ESCAPES: true
