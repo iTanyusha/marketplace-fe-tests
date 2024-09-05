@@ -1,23 +1,18 @@
 import { test, expect } from '@playwright/test';
 import { sites } from '../../settings/sites-prod';
 
-if (process.env.INPUT_BRANCH === 'main' || process.env.INPUT_BRANCH === undefined)
-  console.log('!!! Run tests on main');
-else if (process.env.INPUT_BRANCH === 'dev')
-  console.log('!!! Run tests on dev', 'https://market-dev.bridgify.io/');
-else
-  console.log('!!! Run tests on', `https://${process.env.INPUT_BRANCH}.${process.env.INPUT_APP_ID}.amplifyapp.com/`);
+const branchName = process.env.INPUT_BRANCH?.replaceAll(/\//g, '-');
 
 sites.forEach((site) => {
-  let url;
-  if (process.env.INPUT_BRANCH === 'main' || process.env.INPUT_BRANCH === undefined) {
+  let url: string;
+  if (branchName === 'main' || branchName === undefined) {
     url = site.url
   }
-  else if (process.env.INPUT_BRANCH === 'dev') {
+  else if (branchName === 'dev') {
     url = `https://market-dev.bridgify.io/?property=${site.property}`
   }
   else {
-    url = `https://${process.env.INPUT_BRANCH}.${process.env.INPUT_APP_ID}.amplifyapp.com/?property=${site.property}`
+    url = `https://${branchName}.${process.env.INPUT_APP_ID}.amplifyapp.com/?property=${site.property}`
   }
 
   test(`has title, logo and headers he: ${url}`, async ({ page }) => {
