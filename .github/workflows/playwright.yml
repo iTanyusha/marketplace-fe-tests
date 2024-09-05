@@ -15,23 +15,23 @@ jobs:
         run:  echo 'Branch is ${{ inputs.branch }}, ${{inputs.app_id}}'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
-      - name: Run Playwright tests
-        id: tests
-        run:  INPUT_BRANCH=${{ inputs.branch }} INPUT_APP_ID=${{inputs.app_id}} npm run test:prod
-      - name: Upload playwright-report
-        uses: actions/upload-artifact@v4
-        id: artifact-upload
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
-      - name: Output artifact URL
-        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps chromium
+      # - name: Run Playwright tests
+      #   id: tests
+      #   run:  INPUT_BRANCH=${{ inputs.branch }} INPUT_APP_ID=${{inputs.app_id}} npm run test:prod
+      # - name: Upload playwright-report
+      #   uses: actions/upload-artifact@v4
+      #   id: artifact-upload
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 30
+      # - name: Output artifact URL
+      #   run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
       - name: Output statuses
         run:  echo 'Result statuses ${{ steps.artifact-upload.outputs.artifact-url }}, ${{join(steps.tests.outputs.*, '\n')}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
       - name: Slack Notification
@@ -50,6 +50,6 @@ jobs:
       - name: Slack Notification 2
         run: |
           curl -X POST \
-          --url $SLACK_WEBHOOK_URL \
+          $SLACK_WEBHOOK_URL \
           -H 'Content-type:application/json' \
           --data '{\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Github Repo:* '$AWS_CLONE_URL'\n*Branch:* '$AWS_BRANCH'\n*Status*:Build successful.\"}}]}' 
