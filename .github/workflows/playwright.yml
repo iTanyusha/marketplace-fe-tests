@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
       - name: Run Playwright tests
         id: tests
         run:  INPUT_BRANCH=${{ inputs.branch }} INPUT_APP_ID=${{inputs.app_id}} npm run test:prod
