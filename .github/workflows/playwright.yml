@@ -46,4 +46,4 @@ jobs:
           SLACK_TITLE: Tests Finished with ${{ job.status }}
           SLACK_USERNAME: FrontendTests
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          ENABLE_ESCAPES: true
+          ENABLE_ESCAPES: 'true'
