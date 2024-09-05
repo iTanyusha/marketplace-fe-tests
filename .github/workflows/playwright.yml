@@ -47,3 +47,5 @@ jobs:
           SLACK_USERNAME: FrontendTests
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           ENABLE_ESCAPES: 'true'
+      - name: Slack Notification 2
+        run: curl -X POST -H 'Content-type:application/json' --data '{\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Github Repo:* '$AWS_CLONE_URL'\n*Branch:* '$AWS_BRANCH'\n*Status*:Build successful.\"}}]}' $SLACK_WEBHOOK_URL
