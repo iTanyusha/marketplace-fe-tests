@@ -32,21 +32,42 @@ jobs:
       #     retention-days: 30
       # - name: Output artifact URL
       #   run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
-      - name: Output statuses
-        run:  echo 'Result statuses ${{ steps.artifact-upload.outputs.artifact-url }}, ${{join(steps.tests.outputs.*, '\n')}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
+      # - name: Output statuses
+      #   run:  echo 'Result statuses ${{join(steps.tests.outputs.*, '\n')}}, ${{steps.tests.conclusion}}, ${{steps.tests.outcome}}'
+      # - name: Slack Notification
+      #   uses: rtCamp/action-slack-notify@v2
+      #   env:
+      #     SLACK_CHANNEL: frontend_tests
+      #     SLACK_COLOR: ${{ job.status }} 
+      #     SLACK_ICON: https://cdn.prod.website-files.com/60e597955866d334d69541ba/612784b9d4709081f0932c34_icon%20256x256.png
+      #     SLACK_MESSAGE_ON_SUCCESS: ':meow_party: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
+      #     SLACK_MESSAGE_ON_FAILURE: ':meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
+      #     SLACK_MESSAGE: 'Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
+      #     SLACK_TITLE: Tests Finished with ${{ job.status }}
+      #     SLACK_USERNAME: FrontendTests
+      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     ENABLE_ESCAPES: 'true'
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: frontend_tests
-          SLACK_COLOR: ${{ job.status }} 
-          SLACK_ICON: https://cdn.prod.website-files.com/60e597955866d334d69541ba/612784b9d4709081f0932c34_icon%20256x256.png
-          SLACK_MESSAGE_ON_SUCCESS: ':meow_party: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
-          SLACK_MESSAGE_ON_FAILURE: ':meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
-          SLACK_MESSAGE: 'Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
-          SLACK_TITLE: Tests Finished with ${{ job.status }}
-          SLACK_USERNAME: FrontendTests
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          ENABLE_ESCAPES: 'true'
-      - name: Slack Notification 2
         run: |
-          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} -H 'Content-type:application/json' --data '{"text":"text"}' 
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} -H 'Content-type:application/json' --data '"attachments": [
+            {
+              "color": "success",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": ":meow_code: Tests for ${{ inputs.branch }}",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: <${{ steps.artifact-upload.outputs.artifact-url }}|download report>"
+                  }
+                }
+              ]
+            }
+          ]' 
