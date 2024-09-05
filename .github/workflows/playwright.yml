@@ -49,25 +49,4 @@ jobs:
       #     ENABLE_ESCAPES: 'true'
       - name: Slack Notification
         run: |
-          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} -H 'Content-type:application/json' --data '"attachments": [
-            {
-              "color": "success",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "plain_text",
-                    "text": ":meow_code: Tests for ${{ inputs.branch }}",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: <${{ steps.artifact-upload.outputs.artifact-url }}|download report>"
-                  }
-                }
-              ]
-            }
-          ]' 
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} -H 'Content-type:application/json' --data '"attachments": [{"color": "success", "blocks": [{"type": "section","text": {"type": "plain_text","text": ":meow_code: Tests for ${{ inputs.branch }}","emoji": true}},{"type": "section","text": {"type": "mrkdwn","text": ":meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: <${{ steps.artifact-upload.outputs.artifact-url }}|download report>"}}]}]' 
