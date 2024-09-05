@@ -51,4 +51,4 @@ jobs:
         run: |
           curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
           -H 'Content-type:application/json' \
-          --data '{\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Github Repo:* '$AWS_CLONE_URL'\n*Branch:* '$AWS_BRANCH'\n*Status*:Build successful.\"}}]}' 
+          --data '{\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Github Repo:*\n*Branch:* \n*Status*:Build successful.\"}}]}' 
