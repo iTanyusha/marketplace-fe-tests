@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output Branch
-        run:  echo 'Branch is ${{ inputs.branch }},${{inputs.app_id}}'
+        run:  echo 'Branch is ${{ inputs.branch || 'main' }},${{inputs.app_id}}'
       - uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
