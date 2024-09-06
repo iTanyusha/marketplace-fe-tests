@@ -21,5 +21,10 @@ sites.forEach((site) => {
     await expect(page.locator('img#navbar-logo')).toBeVisible();
     await expect(page.locator('h1').getByText(site.heading_en)).toBeVisible();
     await expect(page.locator('h2').getByText(site.carousel_heading_en)).toBeAttached();
+
+    for (const img of await page.locator('img').all()) {
+      if ((await img.getAttribute('src')).includes('alpaca'))
+        throw new Error('Found alpaca')
+    }
   });
 });
