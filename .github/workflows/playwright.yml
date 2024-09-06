@@ -49,4 +49,4 @@ jobs:
       #     ENABLE_ESCAPES: 'true'
       - name: Slack Notification
         run: |
-          curl -X POST ${{secrets.SLACK_WEBHOOK_URL}} -H 'Content-type:application/json' --data '{"attachments":[ {"color":${{job.status == 'success' && 'green' || 'red'}},"blocks":[ {"type":"header","text":{"type":"plain_text","text":":smile:Tests for ${{inputs.branch}}","emoji":true}},{"type":"divider"},{"type":"section","text":{"type":"mrkdwn","text":":smile:Tests for *${{inputs.branch}}* \n Result:*${{steps.tests.outcome}}* \n Report: ${{steps.artifact-upload.outputs.artifact-url}}"}}]}]}' 
+          curl -X POST ${{secrets.SLACK_WEBHOOK_URL}} -H 'Content-type:application/json' --data '{"attachments":[ {"color":${{job.status == 'success' && 'green' || 'red'}},"blocks":[ {"type":"header","text":{"type":"plain_text","text":":smile:Tests for ${{inputs.branch}}","emoji":true}},{"type":"divider"},{"type":"section","text":{"type":"mrkdwn","text":":smile:Tests for *${{inputs.branch}}* \n Result:*report* \n Report:  "}}]}]}' 
