@@ -5,7 +5,7 @@ const branchName = process.env.INPUT_BRANCH?.replaceAll(/\//g, '-');
 
 sites.forEach((site) => {
   let url: string;
-  if (branchName === 'main' || branchName === undefined) {
+  if (branchName === 'main' || !branchName) {
     url = site.url
   }
   else if (branchName === 'dev') {
