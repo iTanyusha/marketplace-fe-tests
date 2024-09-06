@@ -34,18 +34,5 @@ jobs:
       - name: Output statuses
         run:  echo 'Result statuses ${{join(steps.tests.outputs.*,'\n')}},${{steps.tests.conclusion}},${{steps.tests.outcome}}'
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: frontend_tests
-          SLACK_COLOR: ${{ job.status }} 
-          SLACK_ICON: https://cdn.prod.website-files.com/60e597955866d334d69541ba/612784b9d4709081f0932c34_icon%20256x256.png
-          SLACK_MESSAGE_ON_SUCCESS: ':meow_party: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
-          SLACK_MESSAGE_ON_FAILURE: ':meow_code: Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
-          SLACK_MESSAGE: 'Tests for ${{ inputs.branch }} \n Result: ${{steps.tests.outcome}} \n Report: ${{ steps.artifact-upload.outputs.artifact-url }}'
-          SLACK_TITLE: Tests Finished with ${{ job.status }}
-          SLACK_USERNAME: FrontendTests
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          ENABLE_ESCAPES: 'true'
-      - name: Slack Notification
         run: |
           curl -X POST ${{secrets.SLACK_WEBHOOK_URL}} -H 'Content-type:application/json' --data '{"attachments":[ {"color":"${{job.status == 'success' && '#008000' || '#D40E0D'}}","blocks":[ {"type":"header","text":{"type":"plain_text","text":"${{job.status == 'success' && ':innocent:' || ':scream_cat:'}} Tests for ${{inputs.branch}}","emoji":true}},{"type":"divider"},{"type":"section","text":{"type":"mrkdwn","Result: *${{steps.tests.outcome}}* \n Report: *<${{steps.artifact-upload.outputs.artifact-url}}|download>*"}}]}]}' 
