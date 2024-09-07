@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:prod": "cross-env PWDEBUG=1 npx playwright test --project=production",
+    "test:prod": "npx playwright test --project=production",
     "test:dev": "npx playwright test --project=development",
     "test:verbose": "cross-env DEBUG=pw:api npx playwright test --project=production",
     "test:debug": "cross-env PWDEBUG=1 npx playwright test --project=production"

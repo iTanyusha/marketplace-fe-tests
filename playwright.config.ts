@@ -23,6 +23,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', { open: 'never' }],
+    ['list']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -51,7 +52,10 @@ export default defineConfig({
       name: 'development',
       use: { ...devices['Desktop Chrome'] },
       testMatch: 'development/*',
-      timeout: 15000
+      timeout: 15000,
+      expect: {
+        timeout: 15000
+      }
     },
 
     // {
