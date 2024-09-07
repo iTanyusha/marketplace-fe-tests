@@ -19,5 +19,8 @@
     "@typescript-eslint/parser": "^8.4.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-playwright": "^1.6.2"
+  },
+  "dependencies": {
+    "@estruyf/github-actions-reporter": "^1.9.2"
   }
 }

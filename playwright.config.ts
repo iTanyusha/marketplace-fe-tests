@@ -1,3 +1,4 @@
+import { GitHubActionOptions } from '@estruyf/github-actions-reporter';
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -23,7 +24,11 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', { open: 'never' }],
-    ['list']
+    ['list'],
+    ['@estruyf/github-actions-reporter', <GitHubActionOptions>{
+      useDetails: true,
+      showError: true
+    }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
