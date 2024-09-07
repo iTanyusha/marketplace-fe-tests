@@ -31,7 +31,7 @@ jobs:
           retention-days: 30
       - name: Output artifact URL
         if: always()
-        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}'
+        run:  echo 'Artifact ULR is ${{ steps.artifact-upload.outputs.artifact-url }}, https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID'
       - name: Output statuses
         if: always()
         run:  echo 'Result statuses ${{join(steps.tests.outputs.*,'\n')}},${{steps.tests.conclusion}},${{steps.tests.outcome}}'
