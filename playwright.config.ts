@@ -26,7 +26,7 @@ export default defineConfig({
     ['html', { open: 'never' }],
     ['list'],
     ['@estruyf/github-actions-reporter', <GitHubActionOptions>{
-      useDetails: true,
+      // useDetails: true,
       showError: true
     }]
   ],
