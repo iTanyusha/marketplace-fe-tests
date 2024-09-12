@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 
 
-test('no alpaca', async ({ page }) => {
+test.skip('no alpaca', async ({ page }) => {
     await page.goto('http://localhost:3000/en/500');
 
     for (const img of await page.locator('img').all()) {

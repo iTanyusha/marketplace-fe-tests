@@ -16,7 +16,7 @@ export const getUrl = (domain: string, lang: string, path: string, property: str
         url = `${url}${lang}/`;
 
     if (path)
-        url = `${url}${path}/`;
+        url = `${url}${path}`;
 
     if (branchName && branchName !== 'main')
         url = `${url}?property=${property}`;
