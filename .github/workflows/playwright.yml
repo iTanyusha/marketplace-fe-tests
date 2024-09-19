@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Marketplace Tests
 on:
   workflow_dispatch:
     inputs:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output Branch
-        run:  echo 'Branch is ${{ inputs.branch || 'main' }},${{inputs.app_id}}'
+        run:  echo 'Branch is ${{ inputs.branch || 'main' }}, app id is ${{inputs.app_id}}'
       - uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
@@ -35,4 +35,4 @@ jobs:
       - name: Slack Notification
         if: always()
         run: |
-          curl -X POST ${{secrets.SLACK_WEBHOOK_URL}} -H 'Content-type:application/json' --data '{"attachments":[{"color":"${{job.status == 'success' && '#008000' || '#D40E0D'}}","blocks":[{"type":"header","text":{"type":"plain_text","text":"${{job.status == 'success' && ':innocent:' || ':scream_cat:'}} Tests for ${{inputs.branch !='' && inputs.branch || 'main'}}","emoji":true}},{"type":"divider"},{"type":"section","text":{"type":"mrkdwn","text":"Result: *${{steps.tests.outcome}}* \n <https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}|See run logs> \n <${{steps.artifact-upload.outputs.artifact-url}}|Download report>"}}]}]}' 
+          curl -X POST ${{secrets.SLACK_WEBHOOK_URL}} -H 'Content-type:application/json' --data '{"attachments":[{"color":"${{job.status == 'success' && '#00b000' || '#ff001f'}}","blocks":[{"type":"header","text":{"type":"plain_text","text":"${{job.status == 'success' && ':innocent:' || ':scream_cat:'}} Tests for ${{inputs.branch !='' && inputs.branch || 'main'}}","emoji":true}},{"type":"divider"},{"type":"section","text":{"type":"mrkdwn","text":"Job status: *${{job.status}}* \n Tests result: *${{steps.tests.outcome}}* \n <https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}|See tests run logs> \n <${{steps.artifact-upload.outputs.artifact-url}}|Download report>"}}]}]}' 
