@@ -9,6 +9,7 @@ on:
     
 jobs:
   test:
+    name: "My job [branch: ${{ github.event.inputs.branch }}]"
     runs-on: ubuntu-latest
     steps:
       - name: Output Branch
