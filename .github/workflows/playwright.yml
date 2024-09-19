@@ -1,4 +1,5 @@
-name: Marketplace Tests
+name: Marketplace Tests 
+run-name: "Tests for branch: ${{ github.event.inputs.branch  || 'main'}}"
 on:
   workflow_dispatch:
     inputs:
@@ -9,7 +10,6 @@ on:
     
 jobs:
   test:
-    name: "My job [branch: ${{ github.event.inputs.branch }}]"
     runs-on: ubuntu-latest
     steps:
       - name: Output Branch
