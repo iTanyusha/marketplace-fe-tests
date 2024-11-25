@@ -47,10 +47,10 @@ export const sites = [
         url: 'https://pango-global-fun.pango.co.il/',
         property: 'Pango',
         title: 'פנגו גלובל פאן | מגוון הטבות לחוויות בחו"ל',
-        heading: 'מטיילים בחו״ל',
+        heading: 'אתר ההטבות לחו״ל',
         carousel_heading: 'האטרקציות הכי מבוקשות',
         title_en: 'פנגו גלובל פאן | מגוון הטבות לחוויות בחו"ל',
-        heading_en: 'Traveling the world',
+        heading_en: 'Pango\'s worldwide',
         carousel_heading_en: 'Most searched activities',
         isMerchant: false,
     }
