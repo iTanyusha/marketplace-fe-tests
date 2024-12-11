@@ -4,7 +4,7 @@ import { getUrl } from '../../utils/getUrl';
 import { alpacaTest } from '../../utils/alpacaTest';
 
 sites.forEach((site) => {
-  const url = getUrl(site.url, null, null, site.property);
+  const url = getUrl(site.url, null, null, site.property, { testing: 'true' });
 
   test(`has title, logo and headers he: ${url}`, async ({ page }) => {
     await page.goto(url);

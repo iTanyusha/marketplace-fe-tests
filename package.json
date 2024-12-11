@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test:prod": "npx playwright test --project=production",
+    "test:prod:ui": "npx playwright test --ui --project=production",
     "test:branch": "cross-env INPUT_BRANCH=BG-12345/testing-testing INPUT_APP_ID=dx8s7qslw7ty0 npx playwright test --project=production",
     "test:dev": "npx playwright test --project=development",
     "test:verbose": "cross-env DEBUG=pw:api npx playwright test --project=production",
