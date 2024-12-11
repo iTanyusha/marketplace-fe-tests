@@ -53,5 +53,16 @@ export const sites = [
         heading_en: 'Pango\'s worldwide',
         carousel_heading_en: 'Most searched activities',
         isMerchant: false,
+    },
+    {
+        url: 'https://hist-travel.bridgify.io/',
+        property: 'TogetherForYou',
+        title: 'ביחד בשבילך | אתר החוויות והאטרקציות של ביחד בשבילך',
+        heading: 'עולם שלם של חוויות במחירים מסובסדים לחברי ביחד בשבילך',
+        carousel_heading: 'חוויות חורף עם ביטול גמיש',
+        title_en: 'ביחד בשבילך | אתר החוויות והאטרקציות של ביחד בשבילך',
+        heading_en: 'A world full of experiences at subsidized prices for "Together for you" club members',
+        carousel_heading_en: 'Winter Experiences with Flexible cancelation',
+        isMerchant: true,
     }
 ]
