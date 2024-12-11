@@ -18,10 +18,15 @@ export const getUrl = (domain: string, lang: string, path: string, property: str
     if (path)
         url = `${url}${path}`;
 
-    if (branchName && branchName !== 'main')
-        url = `${url}?property=${property}`;
+    const urlObj = new URL(url);
 
-    url = url.replaceAll(/^:\/\//g, '/');
+    if (branchName && branchName !== 'main')
+        // url = `${url}?property=${property}`;
+        urlObj.searchParams.append('property', property);
+
+    urlObj.searchParams.append('testing', 'true');
+
+    url = urlObj.toString().replaceAll(/^:\/\//g, '/');
 
     return url;
 }
