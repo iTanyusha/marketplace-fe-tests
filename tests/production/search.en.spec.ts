@@ -12,7 +12,7 @@ testSites.forEach(site => {
         test(`search in en | ${url} | ${term}`, async ({ page }) => {
             await page.goto(url);
             const urlTerm = encodeURI(term.replaceAll(/ /g, '-'));
-            const searchUrl = getUrl(site.url, 'en', `search/1/${urlTerm}`, site.property);
+            const searchUrl = getUrl(site.url, 'en', `search/1/${urlTerm}`);
             await expect(page.locator('input#searchInput')).toBeVisible();
 
             await page.locator('input#searchInput').fill(term);
@@ -31,7 +31,7 @@ testSites.forEach(site => {
         test(`search in en | ${url} | ${term}`, async ({ page }) => {
             await page.goto(url);
             const urlTerm = encodeURI(term.replaceAll(/ /g, '-'));
-            const searchUrl = getUrl(site.url, 'en', `search/1/cities/${urlTerm}`, site.property);
+            const searchUrl = getUrl(site.url, 'en', `search/1/cities/${urlTerm}`);
             await expect(page.locator('input#searchInput')).toBeVisible();
 
             await page.locator('input#searchInput').fill(term);
@@ -48,7 +48,7 @@ testSites.forEach(site => {
     test(`search in en | ${url} | ${enNoResults}`, async ({ page }) => {
         await page.goto(url);
         const urlTerm = encodeURI(enNoResults.replaceAll(/ /g, '-'));
-        const searchUrl = getUrl(site.url, 'en', `search/1/${urlTerm}`, site.property);
+        const searchUrl = getUrl(site.url, 'en', `search/1/${urlTerm}`);
         await expect(page.locator('input#searchInput')).toBeVisible();
 
         await page.locator('input#searchInput').fill(enNoResults);

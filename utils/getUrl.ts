@@ -1,6 +1,6 @@
 const branchName = process.env.INPUT_BRANCH?.replaceAll(/\//g, '-');
 
-export const getUrl = (domain: string, lang: string, path: string, property: string, params?: Record<string, string>) => {
+export const getUrl = (domain: string, lang: string, path: string, property?: string, params?: Record<string, string>) => {
     let url: string;
     if (branchName === 'main' || !branchName) {
         url = domain
@@ -20,7 +20,7 @@ export const getUrl = (domain: string, lang: string, path: string, property: str
 
     const urlObj = new URL(url);
 
-    if (branchName && branchName !== 'main')
+    if (branchName && branchName !== 'main' && property)
         urlObj.searchParams.append('property', property);
 
     if (params) {
