@@ -62,7 +62,7 @@ export const sites = [
         carousel_heading: 'חוויות חורף עם ביטול גמיש',
         title_en: 'ביחד בשבילך | אתר החוויות והאטרקציות של ביחד בשבילך',
         heading_en: 'A world full of experiences at subsidized prices for "Together for you" club members',
-        carousel_heading_en: 'Winter Experiences with Flexible cancelation',
+        carousel_heading_en: 'Winter Experiences with Flexible cancellation',
         isMerchant: true,
     }
 ]
